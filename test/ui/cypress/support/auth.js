@@ -29,11 +29,11 @@ Cypress.Commands.add('loginWithRHAccount', () => {
         // inside the cy.origin() method from failing the test
         return false
       })
-      cy.get('#username-verification', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'))
+      cy.get('#username-verification', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'), {force: true})
       cy.get('#login-show-step2', {timeout: 6000})
         .should('have.text', 'Next')
         .click()
-    cy.get('#password').type(Cypress.env('RH_ACCOUNT_PASSWORD'))
+    cy.get('#password', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_PASSWORD'))
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
       .click()
     })
