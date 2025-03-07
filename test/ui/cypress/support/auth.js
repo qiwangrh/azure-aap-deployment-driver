@@ -24,6 +24,11 @@ Cypress.Commands.add('loginWithRHAccount', () => {
 
     // 'Log in with Red Hat account using user name and password
     cy.origin(Cypress.env('RH_SSO_URL'), () => {
+      cy.on('uncaught:exception', (err, runnable) => {
+        // returning false here prevents Cypress
+        // inside the cy.origin() method from failing the test
+        return false
+      })
       cy.get('#username-verification', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'))
       cy.get('#login-show-step2', {timeout: 6000})
         .should('have.text', 'Next')
