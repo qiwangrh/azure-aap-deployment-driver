@@ -24,11 +24,11 @@ Cypress.Commands.add('loginWithRHAccount', () => {
 
     // 'Log in with Red Hat account using user name and password
     cy.origin(Cypress.env('RH_SSO_URL'), () => {
-      cy.get('input#username-verification.pf-c-form-control',{timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'), {force: true})
-      cy.get('#login-show-step2')
+      cy.get('#username-verification', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'))
+      cy.get('#login-show-step2', {timeout: 6000})
         .should('have.text', 'Next')
         .click()
-    cy.get('input#password.pf-c-form-control').type(Cypress.env('RH_ACCOUNT_PASSWORD'))
+    cy.get('#password').type(Cypress.env('RH_ACCOUNT_PASSWORD'))
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
       .click()
     })
