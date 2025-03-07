@@ -32,10 +32,10 @@ Cypress.Commands.add('loginWithRHAccount', () => {
       cy.get('#username-verification', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'), {force: true})
       cy.get('#login-show-step2', {timeout: 6000})
         .should('have.text', 'Next')
-        .click()
-    cy.get('#password', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_PASSWORD'))
+        .click({force: true})
+    cy.get('#password', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_PASSWORD'), {force: true})
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
-      .click()
+      .click({force: true})
     })
 
     // Check that the user is redirected to the Deployment Engine UI
