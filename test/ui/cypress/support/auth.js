@@ -27,11 +27,11 @@ Cypress.Commands.add('loginWithRHAccount', () => {
       cy.on('uncaught:exception', (err, runnable) => {
         return false;
       });
-      cy.get('input#username-verification.pf-c-form-control', {timeout: 6000}).type(Cypress.env('RH_ACCOUNT_USERNAME'))
+      cy.get('input#username-verification.pf-c-form-control', {force: true}).type(Cypress.env('RH_ACCOUNT_USERNAME'))
       cy.get('#login-show-step2')
         .should('have.text', 'Next')
         .click()
-    cy.get('input#password.pf-c-form-control',{timeout: 6000}).type(Cypress.env('RH_ACCOUNT_PASSWORD'))
+    cy.get('input#password.pf-c-form-control',{force: true}).type(Cypress.env('RH_ACCOUNT_PASSWORD'))
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
       .click()
     })
