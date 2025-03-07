@@ -24,16 +24,13 @@ Cypress.Commands.add('loginWithRHAccount', () => {
 
     // 'Log in with Red Hat account using user name and password
     cy.origin(Cypress.env('RH_SSO_URL'), () => {
-      cy.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
       cy.get('input#username-verification.pf-c-form-control').type(Cypress.env('RH_ACCOUNT_USERNAME'))
       cy.get('#login-show-step2')
         .should('have.text', 'Next')
-        .click({ waitForAnimations: false })
+        .click()
     cy.get('input#password.pf-c-form-control').type(Cypress.env('RH_ACCOUNT_PASSWORD'))
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
-      .click({ waitForAnimations: false })
+      .click()
     })
 
     // Check that the user is redirected to the Deployment Engine UI
