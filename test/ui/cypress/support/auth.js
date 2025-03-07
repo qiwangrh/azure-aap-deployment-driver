@@ -27,10 +27,10 @@ Cypress.Commands.add('loginWithRHAccount', () => {
       cy.get('input#username-verification.pf-c-form-control').type(Cypress.env('RH_ACCOUNT_USERNAME'))
       cy.get('#login-show-step2')
         .should('have.text', 'Next')
-        .click({ waitForAnimations: false })
+        .click({force: true})
     cy.get('input#password.pf-c-form-control').type(Cypress.env('RH_ACCOUNT_PASSWORD'))
     cy.get('button#rh-password-verification-submit-button.pf-c-button')
-      .click({ waitForAnimations: false })
+      .click({force: true})
     })
 
     // Check that the user is redirected to the Deployment Engine UI
